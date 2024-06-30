@@ -81,9 +81,13 @@ Al iniciar la aplicación, se mostrará la lista de tareas filtradas por un rang
 ## Referencias
 
 - [Documentación de ASP.NET MVC](https://docs.microsoft.com/en-us/dotnet/framework/)
-- [Repositorio en GitHub]([(https://github.com/Guiller438/Mini_Core.git)])
-- [Enlace del Proyecto]()
+- [Repositorio en GitHub](https://github.com/Guiller438/Mini_Core.git)
+- [Enlace del Proyecto deployado](http://guillermo269-001-site1.etempurl.com)
+##Credenciales para acceder al contenido web deployado
 
+- **Uusario:** 11181735 
+- **Contraseña** 60-dayfreetrial
+  
 ## Contactos
 
 - **Email Institucional:** guillermo.alvarez@udla.edu.ec
