@@ -169,3 +169,4 @@ C:\Users\guill\source\repos\Mini Core\bin\Debug\net8.0\runtimes\win\lib\net8.0\S
 C:\Users\guill\source\repos\Mini Core\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\guill\source\repos\Mini Core\obj\Debug\net8.0\Mini Core.csproj.AssemblyReference.cache
 C:\Users\guill\source\repos\Mini Core\obj\Debug\net8.0\Mini Core.csproj.Up2Date
+C:\Users\guill\source\repos\Mini Core\obj\Debug\net8.0\Mini Core.sourcelink.json

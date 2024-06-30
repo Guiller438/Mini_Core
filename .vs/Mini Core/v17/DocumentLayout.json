@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\guill\\source\\repos\\Mini Core\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\controllers\\tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:controllers\\tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,20 +19,28 @@
       "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\models\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:models\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\models\\tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:models\\tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\models\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|solutionrelative:models\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B3AEACD0-3621-4256-BFCE-94AFD5C6CA0F}|Mini Core.csproj|c:\\users\\guill\\source\\repos\\mini core\\models\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,96 +54,139 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAYwCMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T03:48:35.866Z"
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-30T19:49:47.096Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Tareas\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Tareas\\Index.cshtml",
-              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Tareas\\Index.cshtml",
-              "RelativeToolTip": "Views\\Tareas\\Index.cshtml",
-              "ViewState": "AQIAAFgAAAAAAAAAAAAYwHAAAAAAAAAA",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-29T21:11:53.62Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Tareas.cs",
-              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Controllers\\Tareas.cs",
-              "RelativeDocumentMoniker": "Controllers\\Tareas.cs",
-              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Controllers\\Tareas.cs",
-              "RelativeToolTip": "Controllers\\Tareas.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T14:53:05.131Z",
+              "WhenOpened": "2024-06-30T19:49:42.789Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Tareas\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tareas\\Index.cshtml",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Views\\Tareas\\Index.cshtml",
+              "RelativeToolTip": "Views\\Tareas\\Index.cshtml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-30T19:16:14.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Tareas.cs",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Controllers\\Tareas.cs",
+              "RelativeDocumentMoniker": "Controllers\\Tareas.cs",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Controllers\\Tareas.cs",
+              "RelativeToolTip": "Controllers\\Tareas.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-30T19:12:36.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-30T19:12:32.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-30T19:11:52.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-30T19:11:51.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
               "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Data\\ApplicationDbContext.cs",
               "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AQIAAKcAAAAAAAAAAAAAwLEAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T14:30:16.853Z"
+              "WhenOpened": "2024-06-30T19:10:12.944Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Proyecto.cs",
-              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Proyecto.cs",
-              "RelativeDocumentMoniker": "Models\\Proyecto.cs",
-              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Proyecto.cs",
-              "RelativeToolTip": "Models\\Proyecto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T14:18:32.277Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Tareas.cs",
               "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Tareas.cs",
               "RelativeDocumentMoniker": "Models\\Tareas.cs",
               "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Tareas.cs",
               "RelativeToolTip": "Models\\Tareas.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T14:11:04.386Z"
+              "WhenOpened": "2024-06-30T19:08:33.172Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
+              "Title": "Proyecto.cs",
+              "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Proyecto.cs",
+              "RelativeDocumentMoniker": "Models\\Proyecto.cs",
+              "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Proyecto.cs",
+              "RelativeToolTip": "Models\\Proyecto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-30T19:08:28.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Empleado.cs",
               "DocumentMoniker": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Empleado.cs",
               "RelativeDocumentMoniker": "Models\\Empleado.cs",
               "ToolTip": "C:\\Users\\guill\\source\\repos\\Mini Core\\Models\\Empleado.cs",
               "RelativeToolTip": "Models\\Empleado.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T14:08:30.577Z"
+              "WhenOpened": "2024-06-30T19:08:24.64Z",
+              "EditorCaption": ""
             }
           ]
         }

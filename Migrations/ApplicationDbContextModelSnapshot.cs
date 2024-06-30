@@ -240,7 +240,7 @@ namespace Mini_Core.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Empleados");
+                    b.ToTable("Empleados", (string)null);
 
                     b.HasData(
                         new
@@ -290,7 +290,7 @@ namespace Mini_Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Proyectos");
+                    b.ToTable("Proyectos", (string)null);
 
                     b.HasData(
                         new
@@ -350,7 +350,7 @@ namespace Mini_Core.Migrations
 
                     b.HasIndex("proyectoId");
 
-                    b.ToTable("Tareas");
+                    b.ToTable("Tareas", (string)null);
 
                     b.HasData(
                         new

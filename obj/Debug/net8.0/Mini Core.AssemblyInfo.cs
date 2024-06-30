@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mini Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fd73947c2f32c92111edfa75588e7d81b8a9a73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+453965bccc98e0d985f0378ef2d4b9f88628da59")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mini Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mini Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
