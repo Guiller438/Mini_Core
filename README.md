@@ -17,7 +17,7 @@ En este proyecto, se crea una aplicación web que permite gestionar tareas y fil
 1. Clona el repositorio en tu máquina local:
 
     ```sh
-    git clone https://github.com/feli203040/Video-Explicativo-C-.NET.git
+    https://github.com/Guiller438/Mini_Core.git
     ```
 
 2. Abre el proyecto en Visual Studio.
@@ -83,6 +83,7 @@ Al iniciar la aplicación, se mostrará la lista de tareas filtradas por un rang
 - [Documentación de ASP.NET MVC](https://docs.microsoft.com/en-us/dotnet/framework/)
 - [Repositorio en GitHub](https://github.com/Guiller438/Mini_Core.git)
 - [Enlace del Proyecto deployado](http://guillermo269-001-site1.etempurl.com)
+  
 ##Credenciales para acceder al contenido web deployado
 
 - **Uusario:** 11181735 
@@ -96,4 +97,4 @@ Al iniciar la aplicación, se mostrará la lista de tareas filtradas por un rang
 
 En este video se explica lo básico para crear un proyecto MVC .NET desde cero y adicionalmente se muestra cómo filtrar y calcular datos dentro de un rango de fechas.
 
-- [Video en YouTube]()
+- [Video en YouTube](https://youtu.be/bYfy0S_bj4s)
