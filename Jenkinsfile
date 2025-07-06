@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOTNET_ROOT = '/opt/dotnet'
-        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin:/usr/local/bin"
+        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin:/var/jenkins_home/tools/sonar-scanner-dotnet"
 
         SONAR_HOST_URL = 'http://host.docker.internal:9000'
         DEPLOY_TEST_PATH = '/var/jenkins_home/deploy_test'
@@ -11,23 +11,25 @@ pipeline {
     }
 
     stages {
-            stage('Preparar herramientas') {
-                steps {
-                    script {
-                        echo "🔧 Verificando instalación de dotnet-sonarscanner..."
-                        sh '''
-                            mkdir -p /var/jenkins_home/tools/sonar-scanner-dotnet
-                            if ! command -v dotnet-sonarscanner >/dev/null 2>&1; then
-                                echo "⚙️ Instalando dotnet-sonarscanner versión 10.2.0.117568..."
-                                wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
-                                unzip -o sonar-scanner-10.2.0.117568-net.zip -d /var/jenkins_home/tools/sonar-scanner-dotnet
-                                ln -sf /var/jenkins_home/tools/sonar-scanner-dotnet/dotnet-sonarscanner /usr/local/bin/dotnet-sonarscanner
-                            fi
-                            dotnet-sonarscanner --version
-                        '''
-                    }
+
+        stage('Preparar herramientas') {
+            steps {
+                script {
+                    echo "🔧 Verificando instalación de dotnet-sonarscanner..."
+                    sh '''
+                        mkdir -p /var/jenkins_home/tools/sonar-scanner-dotnet
+                        if [ ! -f /var/jenkins_home/tools/sonar-scanner-dotnet/dotnet-sonarscanner ]; then
+                            echo "⚙️ Instalando dotnet-sonarscanner versión 10.2.0.117568..."
+                            wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
+                            unzip -o sonar-scanner-10.2.0.117568-net.zip -d /var/jenkins_home/tools/sonar-scanner-dotnet
+                            chmod +x /var/jenkins_home/tools/sonar-scanner-dotnet/dotnet-sonarscanner
+                        fi
+                    '''
+                    env.PATH = "/var/jenkins_home/tools/sonar-scanner-dotnet:${env.PATH}"
+                    sh 'dotnet-sonarscanner --version'
                 }
             }
+        }
 
         stage('Checkout - Descargar Código') {
             steps {
@@ -60,7 +62,7 @@ pipeline {
         stage('Validación de Artefactos') {
             steps {
                 script {
-                    echo "🔎 Validando artefactos en bin/Release/net8.0..."
+                    echo "🔎 Validando artefactos generados..."
                     sh '''
                         if [ ! -d bin/Release/net8.0 ] || [ -z "$(ls -A bin/Release/net8.0/*.dll 2>/dev/null)" ]; then
                             echo '⚠️ No se generaron artefactos. Fallando el pipeline.'
@@ -78,7 +80,7 @@ pipeline {
                 sh """
                     mkdir -p ${DEPLOY_TEST_PATH}
                     cp -r bin/Release/net8.0/* ${DEPLOY_TEST_PATH}/
-                    echo '✅ Despliegue en pruebas completado.'
+                    echo '✅ Despliegue en entorno de pruebas completado.'
                 """
             }
         }
@@ -104,7 +106,7 @@ pipeline {
                 sh """
                     mkdir -p ${DEPLOY_PROD_PATH}
                     cp -r bin/Release/net8.0/* ${DEPLOY_PROD_PATH}/
-                    echo '✅ Despliegue en producción completado.'
+                    echo '✅ Despliegue en entorno de producción completado.'
                 """
             }
         }
