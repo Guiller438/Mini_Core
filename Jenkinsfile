@@ -3,8 +3,9 @@ pipeline {
 
     environment {
         DOTNET_ROOT = '/opt/dotnet'
-        PATH = "${env.PATH}:${DOTNET_ROOT}"
-        SONAR_HOST_URL = 'http://host.docker.internal:9000' // Ajusta si SonarQube está en otro lado
+        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin:/var/jenkins_home/.dotnet/tools:${env.PATH}"
+
+        SONAR_HOST_URL = 'http://host.docker.internal:9000'    // Cambia si SonarQube está en otro lado
         DEPLOY_TEST_PATH = '/var/jenkins_home/deploy_test'
         DEPLOY_PROD_PATH = '/var/jenkins_home/deploy_prod_sim'
     }
@@ -23,9 +24,9 @@ pipeline {
                     script {
                         echo "🔍 Iniciando análisis de SonarQube..."
                         sh """
-                            dotnet sonarscanner begin /k:"ProyectoFinalPS" /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.login=${SONAR_TOKEN}
+                            dotnet-sonarscanner begin /k:"ProyectoFinalPS" /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.login=${SONAR_TOKEN}
                             dotnet build --configuration Release
-                            dotnet sonarscanner end /d:sonar.login=${SONAR_TOKEN}
+                            dotnet-sonarscanner end /d:sonar.login=${SONAR_TOKEN}
                         """
                     }
                 }
@@ -35,10 +36,10 @@ pipeline {
         stage('Restaurar Dependencias y Compilar Proyecto') {
             steps {
                 script {
-                    echo "📦 Restaurando dependencias..."
+                    echo "🚧 Restaurando dependencias..."
                     sh 'dotnet restore'
 
-                    echo "⚙️ Compilando proyecto en modo Release..."
+                    echo "🛠️ Compilando proyecto en modo Release..."
                     sh 'dotnet build --configuration Release'
                 }
             }
@@ -47,14 +48,14 @@ pipeline {
         stage('Validación de Artefactos') {
             steps {
                 script {
-                    echo "🔍 Validando que los artefactos se generaron..."
+                    echo "🔎 Validando existencia de artefactos generados..."
                     sh """
-                        if [ ! -d "bin/Release/net8.0" ]; then
-                            echo '❌ Los artefactos no fueron generados correctamente.'
+                        if [ ! -f bin/Release/net8.0/*.dll ]; then
+                            echo '⚠️ No se generaron artefactos. Fallando el pipeline.'
                             exit 1
                         fi
-                        echo '✅ Artefactos encontrados, continuando...'
                     """
+                    echo "✅ Artefactos generados correctamente."
                 }
             }
         }
@@ -62,11 +63,11 @@ pipeline {
         stage('Despliegue Simulado en Entorno de Pruebas') {
             steps {
                 script {
-                    echo "🧪 Simulando despliegue en entorno de pruebas..."
+                    echo "🔧 Simulando despliegue en entorno de pruebas..."
                     sh """
                         mkdir -p ${DEPLOY_TEST_PATH}
                         cp -r bin/Release/net8.0/* ${DEPLOY_TEST_PATH}/
-                        echo '✅ Despliegue simulado en entorno de pruebas completado.'
+                        echo '✅ Despliegue en entorno de pruebas completado.'
                     """
                 }
             }
@@ -75,15 +76,15 @@ pipeline {
         stage('Escaneo de Seguridad - Trivy') {
             steps {
                 script {
-                    echo "🔎 Ejecutando análisis de seguridad con Trivy..."
+                    echo "🛡️ Ejecutando escaneo de vulnerabilidades con Trivy..."
                     sh 'trivy fs . > trivy_report.txt || true'
 
                     def highCount = sh(script: "grep -c HIGH trivy_report.txt || true", returnStdout: true).trim()
                     def criticalCount = sh(script: "grep -c CRITICAL trivy_report.txt || true", returnStdout: true).trim()
 
-                    echo "⚠️ Resumen de vulnerabilidades detectadas:"
-                    echo "🔴 ALTAS: ${highCount}"
-                    echo "🔴 CRÍTICAS: ${criticalCount}"
+                    echo "⚠️ Resumen de vulnerabilidades:"
+                    echo "🔴 Vulnerabilidades ALTAS: ${highCount}"
+                    echo "🔴 Vulnerabilidades CRÍTICAS: ${criticalCount}"
                     echo "📄 Reporte completo disponible como artefacto."
                 }
             }
@@ -96,7 +97,7 @@ pipeline {
                     sh """
                         mkdir -p ${DEPLOY_PROD_PATH}
                         cp -r bin/Release/net8.0/* ${DEPLOY_PROD_PATH}/
-                        echo '✅ Despliegue simulado en entorno de producción completado.'
+                        echo '✅ Despliegue en entorno de producción completado.'
                     """
                 }
             }
@@ -105,9 +106,8 @@ pipeline {
 
     post {
         always {
-            echo "📢 Guardando reporte de Trivy como artefacto descargable..."
+            echo "📢 Publicando reporte de Trivy como artefacto descargable..."
             archiveArtifacts artifacts: 'trivy_report.txt', fingerprint: true
-
             echo "✅ Pipeline finalizado. Revisa los artefactos y el tablero de SonarQube."
         }
     }
