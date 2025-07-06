@@ -3,12 +3,12 @@ pipeline {
 
     environment {
         DOTNET_ROOT = '/opt/dotnet'
-        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin"
+        SONAR_SCANNER_DIR = '/var/jenkins_home/tools/sonar-scanner-dotnet'
+        PATH = "${env.PATH}:${DOTNET_ROOT}:${SONAR_SCANNER_DIR}/sonar-scanner-5.0.2.4997/bin:/var/jenkins_home/.dotnet/tools"
 
-        SONAR_HOST_URL = 'http://host.docker.internal:9000'
+        SONAR_HOST_URL = 'http://host.docker.internal:9000'    
         DEPLOY_TEST_PATH = '/var/jenkins_home/deploy_test'
         DEPLOY_PROD_PATH = '/var/jenkins_home/deploy_prod_sim'
-        SONAR_SCANNER_DIR = '/var/jenkins_home/tools/sonar-scanner-dotnet'
     }
 
     stages {
@@ -23,6 +23,7 @@ pipeline {
                             echo "⚙️ Instalando SonarScanner .NET versión 10.2.0.117568..."
                             wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
                             unzip -o sonar-scanner-10.2.0.117568-net.zip -d ${SONAR_SCANNER_DIR}
+                            chmod +x ${SONAR_SCANNER_DIR}/sonar-scanner-5.0.2.4997/bin/sonar-scanner
                         fi
                     '''
                 }
@@ -47,11 +48,11 @@ pipeline {
                 withCredentials([string(credentialsId: 'SONARQUBE_TOKEN', variable: 'SONAR_TOKEN')]) {
                     script {
                         echo "🔍 Iniciando análisis de SonarQube..."
-                        sh """
+                        sh '''
                             dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll begin /k:"ProyectoFinalPS" /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.login=${SONAR_TOKEN}
                             dotnet build --configuration Release
                             dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_TOKEN}
-                        """
+                        '''
                     }
                 }
             }
@@ -60,10 +61,10 @@ pipeline {
         stage('Validación de Artefactos') {
             steps {
                 script {
-                    echo "🔎 Validando artefactos generados..."
+                    echo "🔎 Validando artefactos..."
                     sh '''
-                        if [ ! -d bin/Release/net8.0 ] || [ -z "$(ls -A bin/Release/net8.0/*.dll 2>/dev/null)" ]; then
-                            echo '⚠️ No se generaron artefactos. Fallando el pipeline.'
+                        if [ -z "$(ls -A bin/Release/net8.0/*.dll 2>/dev/null)" ]; then
+                            echo "⚠️ No se generaron artefactos. Fallando el pipeline."
                             exit 1
                         fi
                     '''
@@ -74,38 +75,41 @@ pipeline {
 
         stage('Despliegue Simulado en Entorno de Pruebas') {
             steps {
-                echo "🔧 Simulando despliegue en entorno de pruebas..."
-                sh """
-                    mkdir -p ${DEPLOY_TEST_PATH}
-                    cp -r bin/Release/net8.0/* ${DEPLOY_TEST_PATH}/
-                    echo '✅ Despliegue en entorno de pruebas completado.'
-                """
+                script {
+                    echo "🚀 Desplegando en entorno de pruebas..."
+                    sh '''
+                        mkdir -p ${DEPLOY_TEST_PATH}
+                        cp -r bin/Release/net8.0/* ${DEPLOY_TEST_PATH}/
+                        echo "✅ Despliegue completado en pruebas."
+                    '''
+                }
             }
         }
 
         stage('Escaneo de Seguridad - Trivy') {
             steps {
                 script {
-                    echo "🛡️ Ejecutando escaneo de vulnerabilidades con Trivy..."
-                    sh 'trivy fs . > trivy_report.txt || true'
-
-                    def highCount = sh(script: "grep -c HIGH trivy_report.txt || true", returnStdout: true).trim()
-                    def criticalCount = sh(script: "grep -c CRITICAL trivy_report.txt || true", returnStdout: true).trim()
-
-                    echo "⚠️ Vulnerabilidades ALTAS: ${highCount}"
-                    echo "⚠️ Vulnerabilidades CRÍTICAS: ${criticalCount}"
+                    echo "🛡️ Ejecutando Trivy..."
+                    sh '''
+                        trivy fs . > trivy_report.txt || true
+                        grep -c HIGH trivy_report.txt || true
+                        grep -c CRITICAL trivy_report.txt || true
+                    '''
+                    echo "⚠️ Revisa trivy_report.txt para detalles."
                 }
             }
         }
 
         stage('Despliegue Simulado en Entorno de Producción') {
             steps {
-                echo "🚀 Simulando despliegue en producción..."
-                sh """
-                    mkdir -p ${DEPLOY_PROD_PATH}
-                    cp -r bin/Release/net8.0/* ${DEPLOY_PROD_PATH}/
-                    echo '✅ Despliegue en entorno de producción completado.'
-                """
+                script {
+                    echo "🚀 Desplegando en entorno de producción..."
+                    sh '''
+                        mkdir -p ${DEPLOY_PROD_PATH}
+                        cp -r bin/Release/net8.0/* ${DEPLOY_PROD_PATH}/
+                        echo "✅ Despliegue completado en producción."
+                    '''
+                }
             }
         }
     }
