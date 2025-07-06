@@ -16,11 +16,11 @@ pipeline {
         stage('Preparar herramientas') {
             steps {
                 script {
-                    echo "🔧 Verificando instalación de SonarScanner para .NET..."
+                    echo "🔧 Preparando SonarScanner para .NET..."
                     sh '''
                         mkdir -p ${SONAR_SCANNER_DIR}
                         if [ ! -f ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll ]; then
-                            echo "⚙️ Instalando SonarScanner .NET versión 10.2.0.117568..."
+                            echo "⚙️ Instalando SonarScanner .NET 10.2.0.117568..."
                             wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
                             unzip -o sonar-scanner-10.2.0.117568-net.zip -d ${SONAR_SCANNER_DIR}
                             chmod +x ${SONAR_SCANNER_DIR}/sonar-scanner-5.0.2.4997/bin/sonar-scanner
@@ -61,7 +61,7 @@ pipeline {
         stage('Validación de Artefactos') {
             steps {
                 script {
-                    echo "🔎 Validando artefactos..."
+                    echo "🔎 Validando artefactos generados..."
                     sh '''
                         if [ -z "$(ls -A bin/Release/net8.0/*.dll 2>/dev/null)" ]; then
                             echo "⚠️ No se generaron artefactos. Fallando el pipeline."
@@ -80,7 +80,7 @@ pipeline {
                     sh '''
                         mkdir -p ${DEPLOY_TEST_PATH}
                         cp -r bin/Release/net8.0/* ${DEPLOY_TEST_PATH}/
-                        echo "✅ Despliegue completado en pruebas."
+                        echo "✅ Despliegue en pruebas completado."
                     '''
                 }
             }
@@ -95,7 +95,6 @@ pipeline {
                         grep -c HIGH trivy_report.txt || true
                         grep -c CRITICAL trivy_report.txt || true
                     '''
-                    echo "⚠️ Revisa trivy_report.txt para detalles."
                 }
             }
         }
@@ -107,7 +106,7 @@ pipeline {
                     sh '''
                         mkdir -p ${DEPLOY_PROD_PATH}
                         cp -r bin/Release/net8.0/* ${DEPLOY_PROD_PATH}/
-                        echo "✅ Despliegue completado en producción."
+                        echo "✅ Despliegue en producción completado."
                     '''
                 }
             }
