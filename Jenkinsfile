@@ -13,9 +13,10 @@ pipeline {
                     echo "🔧 Preparando SonarScanner para .NET..."
                     sh '''
                         mkdir -p ${SONAR_SCANNER_DIR}
+                        
                         if [ ! -f ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll ]; then
                             echo "⚙️ Instalando SonarScanner .NET 10.2.0.117568..."
-                            wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
+                            wget -q https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
                             unzip -o sonar-scanner-10.2.0.117568-net.zip -d ${SONAR_SCANNER_DIR}
                         fi
 
@@ -27,7 +28,8 @@ pipeline {
 
         stage('Checkout - Descargar Código') {
             steps {
-                git 'https://github.com/Guiller438/Mini_Core.git'
+                echo '⬇️ Descargando código fuente...'
+                git branch: 'main', url: 'https://github.com/Guiller438/Mini_Core.git'
             }
         }
 
@@ -40,7 +42,7 @@ pipeline {
 
         stage('Análisis de SonarQube - Calidad y Seguridad') {
             environment {
-                SONAR_TOKEN = credentials('SONAR_TOKEN')
+                SONAR_TOKEN = credentials('SONAR_TOKEN')  // Debes tener SONAR_TOKEN configurado en Jenkins
             }
             steps {
                 script {
@@ -70,7 +72,7 @@ pipeline {
         stage('Escaneo de Seguridad - Trivy') {
             steps {
                 echo '🔐 Escaneando con Trivy (simulado)...'
-                // Aquí iría el escaneo real si tuvieras Trivy instalado
+                // Aquí iría el escaneo real si tienes Trivy instalado
             }
         }
 
