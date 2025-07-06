@@ -3,11 +3,12 @@ pipeline {
 
     environment {
         DOTNET_ROOT = '/opt/dotnet'
-        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin:/var/jenkins_home/tools/sonar-scanner-dotnet"
+        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin"
 
         SONAR_HOST_URL = 'http://host.docker.internal:9000'
         DEPLOY_TEST_PATH = '/var/jenkins_home/deploy_test'
         DEPLOY_PROD_PATH = '/var/jenkins_home/deploy_prod_sim'
+        SONAR_SCANNER_DIR = '/var/jenkins_home/tools/sonar-scanner-dotnet'
     }
 
     stages {
@@ -15,18 +16,15 @@ pipeline {
         stage('Preparar herramientas') {
             steps {
                 script {
-                    echo "🔧 Verificando instalación de dotnet-sonarscanner..."
+                    echo "🔧 Verificando instalación de SonarScanner para .NET..."
                     sh '''
-                        mkdir -p /var/jenkins_home/tools/sonar-scanner-dotnet
-                        if [ ! -f /var/jenkins_home/tools/sonar-scanner-dotnet/dotnet-sonarscanner ]; then
-                            echo "⚙️ Instalando dotnet-sonarscanner versión 10.2.0.117568..."
+                        mkdir -p ${SONAR_SCANNER_DIR}
+                        if [ ! -f ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll ]; then
+                            echo "⚙️ Instalando SonarScanner .NET versión 10.2.0.117568..."
                             wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
-                            unzip -o sonar-scanner-10.2.0.117568-net.zip -d /var/jenkins_home/tools/sonar-scanner-dotnet
-                            chmod +x /var/jenkins_home/tools/sonar-scanner-dotnet/dotnet-sonarscanner
+                            unzip -o sonar-scanner-10.2.0.117568-net.zip -d ${SONAR_SCANNER_DIR}
                         fi
                     '''
-                    env.PATH = "/var/jenkins_home/tools/sonar-scanner-dotnet:${env.PATH}"
-                    sh 'dotnet-sonarscanner --version'
                 }
             }
         }
@@ -50,9 +48,9 @@ pipeline {
                     script {
                         echo "🔍 Iniciando análisis de SonarQube..."
                         sh """
-                            dotnet-sonarscanner begin /k:"ProyectoFinalPS" /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.login=${SONAR_TOKEN}
+                            dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll begin /k:"ProyectoFinalPS" /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.login=${SONAR_TOKEN}
                             dotnet build --configuration Release
-                            dotnet-sonarscanner end /d:sonar.login=${SONAR_TOKEN}
+                            dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_TOKEN}
                         """
                     }
                 }
@@ -76,7 +74,7 @@ pipeline {
 
         stage('Despliegue Simulado en Entorno de Pruebas') {
             steps {
-                echo "🔧 Simulando despliegue en pruebas..."
+                echo "🔧 Simulando despliegue en entorno de pruebas..."
                 sh """
                     mkdir -p ${DEPLOY_TEST_PATH}
                     cp -r bin/Release/net8.0/* ${DEPLOY_TEST_PATH}/
