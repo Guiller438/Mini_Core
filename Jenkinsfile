@@ -19,8 +19,8 @@ pipeline {
                     sh '''
                         if ! command -v dotnet-sonarscanner >/dev/null 2>&1; then
                             echo "⚙️ Instalando dotnet-sonarscanner..."
-                            wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.3.0.78115/sonar-scanner-msbuild-10.3.0.78115-net.zip
-                            unzip sonar-scanner-msbuild-10.3.0.78115-net.zip -d /opt/sonar-scanner-dotnet
+                            wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.3.0.78115/sonar-scanner-msbuild-10.3.0.78115-net-any.zip
+                            unzip sonar-scanner-msbuild-10.3.0.78115-net-any.zip -d /opt/sonar-scanner-dotnet
                             ln -s /opt/sonar-scanner-dotnet/dotnet-sonarscanner /usr/local/bin/dotnet-sonarscanner
                         fi
                         dotnet-sonarscanner --version
