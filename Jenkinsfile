@@ -42,15 +42,15 @@ pipeline {
 
         stage('Análisis de SonarQube - Calidad y Seguridad') {
             environment {
-                SONAR_TOKEN = credentials('SONAR_TOKEN')  // Debes tener SONAR_TOKEN configurado en Jenkins
+                SONARQUBE_TOKEN = credentials('SONARQUBE_TOKEN')  // Debes tener SONARQUBE_TOKEN configurado en Jenkins
             }
             steps {
                 script {
                     echo "🔍 Iniciando análisis de SonarQube..."
                     sh '''
-                        dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll begin /k:ProyectoFinalPS /d:sonar.host.url=http://host.docker.internal:9000 /d:sonar.login=${SONAR_TOKEN}
+                        dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll begin /k:ProyectoFinalPS /d:sonar.host.url=http://host.docker.internal:9000 /d:sonar.login=${SONARQUBE_TOKEN}
                         dotnet build --configuration Release
-                        dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_TOKEN}
+                        dotnet ${SONAR_SCANNER_DIR}/SonarScanner.MSBuild.dll end /d:sonar.login=${SONARQUBE_TOKEN}
                     '''
                 }
             }
