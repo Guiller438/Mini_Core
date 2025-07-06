@@ -11,24 +11,23 @@ pipeline {
     }
 
     stages {
-
-        stage('Preparar herramientas') {
-            steps {
-                script {
-                    echo "🔧 Verificando instalación de dotnet-sonarscanner..."
-                    sh '''
-                        mkdir -p /var/jenkins_home/tools
-                        if ! command -v dotnet-sonarscanner >/dev/null 2>&1; then
-                            echo "⚙️ Instalando dotnet-sonarscanner versión 10.2.0.117568..."
-                            wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
-                            unzip sonar-scanner-10.2.0.117568-net.zip -d /var/jenkins_home/tools/sonar-scanner-dotnet
-                            ln -s /var/jenkins_home/tools/sonar-scanner-dotnet/dotnet-sonarscanner /usr/local/bin/dotnet-sonarscanner
-                        fi
-                        dotnet-sonarscanner --version
-                    '''
+            stage('Preparar herramientas') {
+                steps {
+                    script {
+                        echo "🔧 Verificando instalación de dotnet-sonarscanner..."
+                        sh '''
+                            mkdir -p /var/jenkins_home/tools/sonar-scanner-dotnet
+                            if ! command -v dotnet-sonarscanner >/dev/null 2>&1; then
+                                echo "⚙️ Instalando dotnet-sonarscanner versión 10.2.0.117568..."
+                                wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.2.0.117568/sonar-scanner-10.2.0.117568-net.zip
+                                unzip -o sonar-scanner-10.2.0.117568-net.zip -d /var/jenkins_home/tools/sonar-scanner-dotnet
+                                ln -sf /var/jenkins_home/tools/sonar-scanner-dotnet/dotnet-sonarscanner /usr/local/bin/dotnet-sonarscanner
+                            fi
+                            dotnet-sonarscanner --version
+                        '''
+                    }
                 }
             }
-        }
 
         stage('Checkout - Descargar Código') {
             steps {
