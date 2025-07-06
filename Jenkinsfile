@@ -3,18 +3,44 @@ pipeline {
 
     environment {
         DOTNET_ROOT = '/opt/dotnet'
-        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin:/var/jenkins_home/.dotnet/tools:${env.PATH}"
+        PATH = "${env.PATH}:${DOTNET_ROOT}:/opt/sonar-scanner/bin:/usr/local/bin"
 
-        SONAR_HOST_URL = 'http://host.docker.internal:9000'    // Cambia si SonarQube está en otro lado
+        SONAR_HOST_URL = 'http://host.docker.internal:9000'
         DEPLOY_TEST_PATH = '/var/jenkins_home/deploy_test'
         DEPLOY_PROD_PATH = '/var/jenkins_home/deploy_prod_sim'
     }
 
     stages {
 
+        stage('Preparar herramientas') {
+            steps {
+                script {
+                    echo "🔧 Verificando instalación de dotnet-sonarscanner..."
+                    sh '''
+                        if ! command -v dotnet-sonarscanner >/dev/null 2>&1; then
+                            echo "⚙️ Instalando dotnet-sonarscanner..."
+                            wget https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/10.3.0.78115/sonar-scanner-msbuild-10.3.0.78115-net.zip
+                            unzip sonar-scanner-msbuild-10.3.0.78115-net.zip -d /opt/sonar-scanner-dotnet
+                            ln -s /opt/sonar-scanner-dotnet/dotnet-sonarscanner /usr/local/bin/dotnet-sonarscanner
+                        fi
+                        dotnet-sonarscanner --version
+                    '''
+                }
+            }
+        }
+
         stage('Checkout - Descargar Código') {
             steps {
                 git branch: 'main', url: 'https://github.com/Guiller438/Mini_Core.git'
+            }
+        }
+
+        stage('Restaurar Dependencias') {
+            steps {
+                script {
+                    echo "🚧 Restaurando dependencias..."
+                    sh 'dotnet restore'
+                }
             }
         }
 
@@ -33,28 +59,16 @@ pipeline {
             }
         }
 
-        stage('Restaurar Dependencias y Compilar Proyecto') {
-            steps {
-                script {
-                    echo "🚧 Restaurando dependencias..."
-                    sh 'dotnet restore'
-
-                    echo "🛠️ Compilando proyecto en modo Release..."
-                    sh 'dotnet build --configuration Release'
-                }
-            }
-        }
-
         stage('Validación de Artefactos') {
             steps {
                 script {
                     echo "🔎 Validando existencia de artefactos generados..."
-                    sh """
-                        if [ ! -f bin/Release/net8.0/*.dll ]; then
+                    sh '''
+                        if [ ! -d bin/Release/net8.0 ] || [ -z "$(ls -A bin/Release/net8.0/*.dll 2>/dev/null)" ]; then
                             echo '⚠️ No se generaron artefactos. Fallando el pipeline.'
                             exit 1
                         fi
-                    """
+                    '''
                     echo "✅ Artefactos generados correctamente."
                 }
             }
