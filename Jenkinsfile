@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Guiller438/Mini_Core.git'
+                git branch: 'main', url: 'https://github.com/Guiller438/Mini_Core.git'
             }
         }
 
